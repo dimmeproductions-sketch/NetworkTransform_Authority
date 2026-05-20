@@ -10,6 +10,8 @@ namespace Code
         private Vector2 m_ServerInput;
         private bool m_JumpRequested;
         private Vector2 m_LastInput;
+        public float mapLimitX = 5f; // Límite en el eje X (izquierda/derecha)
+        public float mapLimitZ = 5f; // Límite en el eje Z (arriba/abajo)
 
         [Rpc(SendTo.Server)]
         private void SendInputServerRpc(Vector2 input, bool jump)
@@ -43,6 +45,11 @@ namespace Code
                 // Movimiento horizontal en el plano XZ (Arriba, Abajo, Izquierda, Derecha)
                 Vector3 moveDir = new Vector3(m_ServerInput.x, 0, m_ServerInput.y).normalized;
                 transform.Translate(moveDir * (speed * Time.deltaTime), Space.World);
+
+                // Impedir la salida del plano XZ
+                float clampedX = Mathf.Clamp(transform.position.x, -mapLimitX, mapLimitX);
+                float clampedZ = Mathf.Clamp(transform.position.z, -mapLimitZ, mapLimitZ);
+                transform.position = new Vector3(clampedX, transform.position.y, clampedZ);
 
                 // Lógica de Salto y Gravedad (Asumiendo suelo base en Y = 1f)
                 if (transform.position.y > 1f || m_JumpRequested)
