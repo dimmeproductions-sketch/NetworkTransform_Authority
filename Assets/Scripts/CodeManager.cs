@@ -6,7 +6,6 @@ namespace Code
     public class CodeManager : MonoBehaviour
     {
         private NetworkManager m_NetworkManager;
-        private const int MaxPlayers = 6;
 
         private void Awake()
         {
@@ -23,7 +22,6 @@ namespace Code
             else
             {
                 StatusLabels();
-                SubmitNewPosition();
             }
 
             GUILayout.EndArea();
@@ -43,25 +41,7 @@ namespace Code
 
             GUILayout.Label("Transport: " + m_NetworkManager.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
-            GUILayout.Label($"Jugadores: {m_NetworkManager.ConnectedClientsIds.Count}/{MaxPlayers}");
-        }
-
-        private void SubmitNewPosition()
-        {
-            if (GUILayout.Button(m_NetworkManager.IsServer ? "Move" : "Request Position Change"))
-            {
-                if (m_NetworkManager.IsServer && !m_NetworkManager.IsClient)
-                {
-                    foreach (ulong uid in m_NetworkManager.ConnectedClientsIds)
-                        m_NetworkManager.SpawnManager.GetPlayerNetworkObject(uid).GetComponent<CodePlayer>().Move();
-                }
-                else
-                {
-                    var playerObject = m_NetworkManager.SpawnManager.GetLocalPlayerObject();
-                    var player = playerObject.GetComponent<CodePlayer>();
-                    player.Move();
-                }
-            }
+            GUILayout.Label($"Jugadores: {m_NetworkManager.ConnectedClientsIds.Count}");
         }
     }
 }
