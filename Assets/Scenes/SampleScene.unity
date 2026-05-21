@@ -377,6 +377,88 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &547314140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 547314142}
+  - component: {fileID: 547314141}
+  m_Layer: 0
+  m_Name: Network Simulator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &547314141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547314140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d9db9626104da59357651088226725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PresetAsset: {fileID: 0}
+  m_PresetReference:
+    rid: 5184572733233037615
+  m_Scenario:
+    rid: 5184572733233037591
+  m_IsScenarioSettingsFolded: 1
+  AutoRunScenario: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5184572733233037581
+      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
+      data:
+        <Name>k__BackingField: None
+        <Description>k__BackingField: 
+        <PacketDelayMs>k__BackingField: 0
+        <PacketJitterMs>k__BackingField: 0
+        <PacketLossInterval>k__BackingField: 0
+        <PacketLossPercent>k__BackingField: 0
+    - rid: 5184572733233037591
+      type: {class: ConnectionsCycle, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime.BuiltInScenarios, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
+      data:
+        m_Configurations:
+        - m_ClassPreset:
+            rid: 5184572733233037581
+          m_ScriptableObjectPreset: {fileID: 0}
+          ChangeIntervalMilliseconds: 5000
+    - rid: 5184572733233037615
+      type: {class: NetworkSimulatorPreset, ns: Unity.Multiplayer.Tools.NetworkSimulator.Runtime, asm: Unity.Multiplayer.Tools.NetworkSimulator.Runtime}
+      data:
+        <Name>k__BackingField: 'Mobile 3G [WCDMA & UMTS, ''03]'
+        <Description>k__BackingField: Extremely poor connection, completely unsuitable
+          for synchronous multiplayer gaming due to exceptionally high ping. Turn
+          based games may work.
+        <PacketDelayMs>k__BackingField: 360
+        <PacketJitterMs>k__BackingField: 30
+        <PacketLossInterval>k__BackingField: 0
+        <PacketLossPercent>k__BackingField: 7
+--- !u!4 &547314142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547314140}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +577,7 @@ MonoBehaviour:
     NetworkTopology: 0
     UseCMBService: 0
     AutoSpawnPlayerPrefabClientSide: 1
+    NetworkMessageMetrics: 1
     NetworkProfilingMetrics: 1
     OldPrefabList: []
   RunInBackground: 1
@@ -661,3 +744,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1811343575}
   - {fileID: 849438319}
+  - {fileID: 547314142}
