@@ -22,6 +22,7 @@ namespace Code
             else
             {
                 StatusLabels();
+                SubmitModeChange();
             }
 
             GUILayout.EndArea();
@@ -42,6 +43,23 @@ namespace Code
             GUILayout.Label("Transport: " + m_NetworkManager.NetworkConfig.NetworkTransport.GetType().Name);
             GUILayout.Label("Mode: " + mode);
             GUILayout.Label($"Jugadores: {m_NetworkManager.ConnectedClientsIds.Count}");
+        }
+
+        private void SubmitModeChange()
+        {
+            var playerObject = m_NetworkManager.SpawnManager.GetLocalPlayerObject();
+            if (playerObject != null)
+            {
+                var player = playerObject.GetComponent<CodePlayer>();
+                // Traducimos el número de modo actual a un texto legible
+                string modeName = player.CurrentMode.Value == 0 ? "Server Auth" :
+                                  (player.CurrentMode.Value == 1 ? "Server Auth + Rewind" : "Client Auth");
+
+                if (GUILayout.Button($"Modo: {modeName} (Click para cambiar)"))
+                {
+                    player.CycleModeServerRpc();
+                }
+            }
         }
     }
 }
